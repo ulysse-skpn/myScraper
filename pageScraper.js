@@ -35,7 +35,6 @@ const scraperObject = {
                         text = text.map(t => t.textContent)
                         return text
                     })
-                    if(await newPage.$('.illustration > img ')) dataObj['image'] = await newPage.$eval('.illustration > img ' , img => img.src)
                     if(await newPage.$('#ingredients > div > ul > li')) dataObj['ingredients'] = await newPage.$$eval('#ingredients > div > ul > li' , text => {
                         text = text.map(t => t.textContent)
                         return text
@@ -45,6 +44,7 @@ const scraperObject = {
                         text = text.map(t => t.textContent)
                         return text
                     })   
+                    if(await newPage.$('img.photo')) dataObj['image'] = await newPage.$eval('img.photo' , img => img.src )
                  } 
                  catch (error) 
                  {
