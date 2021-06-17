@@ -40,7 +40,11 @@ const scraperObject = {
                         return text
                     })
                     if(await newPage.$('.quiet > span')) dataObj['serving_size'] = await newPage.$eval('.quiet > span' , text => text.textContent)
-                    if(await newPage.$('#preparation > div > p')) dataObj['instructions'] = await newPage.$$eval('#preparation > div > p' , text => {
+                    if(await newPage.$('.instructions > ol > li')) dataObj['instructions'] = await newPage.$$eval('.instructions > ol > li' , text => {
+                        text = text.map(t => t.textContent)
+                        return text
+                    })   
+                    if(await newPage.$('.instructions > p')) dataObj['instructions'] = await newPage.$$eval('.instructions > p' , text => {
                         text = text.map(t => t.textContent)
                         return text
                     })   
